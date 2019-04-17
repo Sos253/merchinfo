@@ -1,0 +1,57 @@
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+<div id="copyAllLinks" style="position: fixed; float: right; display: inline-block; margin-left: 500px;">
+<textarea rows="4" cols="50" id="linkarea" >
+</textarea>
+<button class="btn btn-primary" onClick="getAllText()" type="button" > Get all Link </button>
+<button class="btn btn-primary" onClick="moveToTop()"> Move to Top</button>
+
+</div>
+</br>
+</br>
+<% for (var i = 0; i < rows.length; i++) { %>
+    <div class="card text-white bg-danger mb-3" class="card border-primary mb-3" style="max-width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title"><%= rows[i].shirt_name %></h5>
+        <img class="card-img-top" height="200" width="200" src= <%=rows[i].image_link%> />
+        <button class="btn btn-primary" onclick="addText(this.id)" type="button" id="<%= rows[i].amazon_link %>" value="hii">Add to list! </button>
+      </div>
+    </div>
+</br>
+</br>
+
+<% } %>
+
+<script>
+function addText(text) {
+    var currButton = document.getElementById(text)
+    var textarea = document.getElementById('linkarea');
+    var textValue = textarea.value;
+    if (textValue.indexOf(text)!=-1) //if the text alread in textbox
+    {
+        textarea.value = textarea.value.replace(text + '\n', "");
+        currButton.style.backgroundColor ='#337ab7';
+
+
+  } else {
+      document.getElementById('linkarea').value += text + '\n';
+      currButton.style.backgroundColor ='#EF7E7E';
+      currButton.innerHTML ='Remove From List';
+
+  }
+}
+
+function getAllText(){
+    var copyText = document.getElementById('linkarea');
+    copyText.select();
+    document.execCommand("Copy");
+}
+
+function moveToTop() {
+    window.scrollTo(0, 0);
+}
+</script>

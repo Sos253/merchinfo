@@ -1,0 +1,3 @@
+EMAIL = ""
+PASSWORD = ""
+DISCORD_URL = ""
